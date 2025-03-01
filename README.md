@@ -1,4 +1,5 @@
 CSUbatch-Job-Scheduling-System
+
 CSUbatch is a batch job scheduling system designed to simulate job submission, scheduling, and execution using multiple scheduling policies (FCFS, SJF, and Priority). The system allows users to submit jobs via a web interface, view job statuses and performance metrics (execution duration and turnaround time), and monitor system performance through a dedicated dashboard.
 
 Project Overview
