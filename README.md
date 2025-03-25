@@ -24,3 +24,28 @@ Prerequisites
 Python 3.x
 MySQL Server
 pip (Python package installer)
+
+## Features
+✔ Job submission and execution tracking  
+✔ Scheduling algorithms: FCFS, SJF, Priority  
+✔ Monitoring dashboard with logs  
+✔ Real-time execution status  
+
+## Technologies Used
+🔹 Flask (Backend)  
+🔹 MySQL (Database)  
+🔹 HTML, CSS, JavaScript (Frontend)  
+
+## Setup & Installation
+1️⃣ Clone the repository:  
+```bash
+git clone https://github.com/Sri-kavya-Project001/job-scheduling-system.git
+
+2️⃣ Install dependencies:
+pip install -r requirements.txt
+
+3️⃣ Run the application:
+python app.py
+
+
+
