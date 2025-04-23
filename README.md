@@ -108,7 +108,7 @@ CSUbatch is divided into four modular components:
     
     Use the /simulate endpoint to auto-generate bulk jobs for testing performance.
 
-6. Development Cycles
+###  Development Cycles
 ✅ Cycle 1 - Planning & Initialization
 Project goals defined
 
@@ -137,13 +137,14 @@ Automated execution upon submission
 Removal of unused dashboard.py
 
 Report and presentation preparation
-7. Contributors
+
+### Contributors
   Sri Kavya
   Chaitanya
   Hemanth
   Isha
 
-8. Team Members of CPSC6179 - Spring 2025
+### Team Members of CPSC6179 - Spring 2025
 
-9.License
+### License
 This project is licensed for educational use under MIT License.
