@@ -151,7 +151,6 @@ Team CSUbatch
 ├── index.html           # Job submission UI
 ├── dashboard.html       # Monitoring UI
 ├── style.css            # CSS styling
-├── requirements.txt     # Python dependencies
 ├── test_app.py          # Unit tests
 
 📝 License
