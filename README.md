@@ -66,8 +66,16 @@ CSUbatch is divided into four modular components:
 | Tools       | PyCharm, VS Code, Git, Ubuntu    |
 
 ---
+ Build and Content
+✅ Project Modules: Job Submission, Scheduling Logic, Backend/Database, Monitoring
 
-## ⚙️ Setup & Installation
+✅ Architecture Overview under “Project Overview” and “System Architecture”
+
+✅ What the system does (end-to-end flow described)
+
+✅ Web-based interface and execution flow
+
+## Setup & Installation
 
 ###  Prerequisites
 - Python 3.x
@@ -129,8 +137,6 @@ Automated execution upon submission
 Removal of unused dashboard.py
 
 Report and presentation preparation
-
-
 7. Contributors
   Sri Kavya
   Chaitanya
