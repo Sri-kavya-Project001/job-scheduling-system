@@ -72,8 +72,6 @@ cd job-scheduling-system
 cd /mnt/c/Users/User/PycharmProjects/PythonProject2/csu_batch_project
 source .venv/bin/activate
 
-📌 Install Dependencies
-pip install -r requirements.txt
 
 ⚡ Run the Application
 python app.py
