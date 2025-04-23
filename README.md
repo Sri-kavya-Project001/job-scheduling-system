@@ -1,150 +1,164 @@
-CSUbatch-Job-Scheduling-System
-
 # CSUbatch - Job Scheduling System
 
-**CSUbatch** is a batch job scheduling system designed to simulate job submission, scheduling, and execution using classic CPU scheduling policies: **FCFS**, **SJF**, and **Priority Scheduling**. It features a real-time job submission interface, execution tracking, logging, and performance monitoring, tailored for educational and research purposes.
-
-
-
-##  Table of Contents
-- [Project Overview](#project-overview)
-- [Key Features](#key-features)
-- [System Architecture](#system-architecture)
-- [Technologies Used](#technologies-used)
-- [Setup & Installation](#setup--installation)
-- [Usage Guide](#usage-guide)
-- [Development Cycles](#development-cycles)
-- [Future Enhancements](#future-enhancements)
-- [Contributors](#contributors)
-- [License](#license)
+CSUbatch is a multithreaded batch job scheduling system that simulates job submission, scheduling, and execution using three key scheduling policies: **FCFS**, **SJF**, and **Priority**. It provides a web interface for users to submit jobs, view their status, monitor execution metrics, and assess performance.
 
 ---
 
-##  Project Overview
+## 📌 Project Overview
 
-CSUbatch is divided into four modular components:
+The system is built with four major modules:
 
-### 1️⃣ Job Submission & User Interface
-- A web-based form to submit jobs (name, burst time, priority, scheduling algorithm).
-- Jobs are stored in a MySQL database and visualized in a table with real-time status updates.
+1. **Job Submission and User Interface**  
+   - HTML/CSS interface for submitting jobs and selecting a scheduling algorithm.  
+   - Displays real-time job status and performance metrics.
 
-### 2️⃣ Job Scheduling Algorithms & Execution
-- Implements FCFS, SJF, and Priority scheduling.
-- Jobs are executed using Python’s threading for concurrency.
-- Turnaround time and execution duration are recorded for each job.
+2. **Job Scheduling Algorithm and Core Logic**  
+   - Implements First-Come-First-Serve (FCFS), Shortest Job First (SJF), and Priority-based scheduling.  
+   - Supports multithreaded execution using Python's threading module.
 
-### 3️⃣ Database Integration
-- MySQL is used to persist job data.
-- `mysql-connector-python` handles queries and connection pooling.
+3. **Database and Backend Integration**  
+   - Uses MySQL to store and manage job data.  
+   - Backend powered by Flask and `mysql-connector-python`.
 
-### 4️⃣ Monitoring & Logging
-- Logs job lifecycle events.
-- Performance metrics such as throughput and average turnaround time are computed.
-- A dashboard provides visual insights into job queue status and logs.
+4. **Monitoring and Logging System**  
+   - Logs key events and execution details.  
+   - Provides metrics like execution duration, turnaround time, and throughput.
 
 ---
 
-## ✨ Key Features
+## 🛠 Features
 
--  Submit and track jobs in real-time
--  Automatic scheduling and asynchronous job execution
--  Track turnaround time and execution duration
--  Supports FCFS, SJF, and Priority scheduling algorithms
--  Logging and performance evaluation tools
-   Simple, clean, and responsive web interface
+✔ Job submission and real-time status updates  
+✔ FCFS, SJF, and Priority scheduling  
+✔ Monitoring dashboard for job metrics  
+✔ Log tracking and performance analysis  
+✔ Automatic job execution on submission  
+✔ Bulk job testing and performance simulation  
+✔ Option to abort and restart jobs (future enhancement)
+
+---
+
+## ⚙️ Technologies Used
+
+- **Backend**: Flask (Python)
+- **Database**: MySQL
+- **Frontend**: HTML, CSS, JavaScript
+- **Multithreading**: Python `threading`
+- **Dev Environment**: PyCharm + Ubuntu (WSL)
 
 ---
 
-##  Technologies Used
+## 🧱 Setup & Installation
 
-| Area        | Technology           |
-|-------------|----------------------|
-| Backend     | Python, Flask        |
-| Frontend    | HTML, CSS, JavaScript|
-| Database    | MySQL                |
-| Scheduling  | Multithreading, Custom Algorithms |
-| Tools       | PyCharm, VS Code, Git, Ubuntu    |
+### ✅ Prerequisites
 
----
- Build and Content
-✅ Project Modules: Job Submission, Scheduling Logic, Backend/Database, Monitoring
+- Python 3.x  
+- MySQL Server  
+- pip (Python Package Manager)  
+- Git  
+- PyCharm or any IDE (Optional)
 
-✅ Architecture Overview under “Project Overview” and “System Architecture”
+### 📥 Clone the Repository
 
-✅ What the system does (end-to-end flow described)
+git clone https://github.com/Sri-kavya-Project001/job-scheduling-system.git
 
-✅ Web-based interface and execution flow
+cd job-scheduling-system
 
-## Setup & Installation
+###📦 Create & Activate Virtual Environment
+  cd /mnt/c/Users/User/PycharmProjects/PythonProject2/csu_batch_project
+.\.venv\Scripts\activate
 
-###  Prerequisites
-- Python 3.x
-- MySQL Server
-- pip
+### On Ubuntu/Linux (WSL):
+cd /mnt/c/Users/User/PycharmProjects/PythonProject2/csu_batch_project
+source .venv/bin/activate
 
-###  Steps
+📌 Install Dependencies
+pip install -r requirements.txt
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/Sri-kavya-Project001/job-scheduling-system.git
-   cd job-scheduling-system
-   
-2. Configure MySQL Database:
-    Create a database and required tables (jobs, logs).
-    Update db.py with your MySQL credentials.
+⚡ Run the Application
+python app.py
 
-3. Run the application:
-   python app.py
-4. Access the UI: Open your browser and go to:
-    http://localhost:5001
-5. Usage Guide:
-    Use the main form to submit jobs.
-    
-    Select the scheduling algorithm (FCFS, SJF, or Priority).
-    
-    Submitted jobs will automatically be scheduled and executed.
-    
-    Monitor job statuses and logs from the dashboard.
-    
-    Use the /simulate endpoint to auto-generate bulk jobs for testing performance.
+Visit http://127.0.0.1:5001 in your browser.
 
-###  Development Cycles
-✅ Cycle 1 - Planning & Initialization
-Project goals defined
+🛠 MySQL Setup
+🔐 Log in to MySQL
+ mysql -u shivani -p
 
-Modules and responsibilities allocated
+📁 Use the database
+USE csu_batch_scheduler;
 
-Initial GitHub setup and issue tracking
+🧹 Reset jobs table (for testing)
+DELETE FROM jobs;
 
-✅ Cycle 2 - Core Development
-Flask app structure
+🧪 Testing & Simulation
+🧪 Run Unit Tests
 
-Job submission form and job table UI
+python -m unittest test_app.py
 
-Scheduling logic (FCFS, SJF, Priority)
 
-Job execution with threading
+🚀 Simulate Job Load
+Submit 10 jobs (1 to 5 seconds) using FCFS:
 
-✅ Cycle 3 - Testing & Enhancements
-Performance evaluation module
+http://127.0.0.1:5001/test?num_jobs=10&min_time=1&max_time=5&policy=FCFS
 
-Logging and job status tracking
+📚 Development Cycles
+✅ Cycle 1
+Requirements analysis
 
-UI and CSS improvements
+Initial UI and Flask setup
 
-Automated execution upon submission
+Created MySQL schema
 
-Removal of unused dashboard.py
+Implemented basic FCFS scheduling
 
-Report and presentation preparation
+✅ Cycle 2
+Added SJF and Priority scheduling
 
-### Contributors
-  Sri Kavya
-  Chaitanya
-  Hemanth
-  Isha
+Implemented logging and dashboard
 
-### Team Members of CPSC6179 - Spring 2025
+UI enhanced with CSS
 
-### License
-This project is licensed for educational use under MIT License.
+Jobs auto-execute on submission
+
+✅ Cycle 3
+Improved modularity and code structure
+
+Extended test coverage
+
+Added performance simulation tool
+
+Prepared reports and documentation
+
+🚧 Future Enhancements
+Abort and restart job functionality
+
+Graph-based performance visualization
+
+Admin control panel for job management
+
+Support for parallel job clusters
+
+Deploy with Docker
+
+🙌 Authors
+Sri Kavya, Hemanth, Chaitanya, Isha
+
+Team CSUbatch
+
+📂 Repository Structure
+
+├── app.py               # Flask backend
+├── scheduler.py         # Scheduling logic
+├── db.py                # Database connection
+├── index.html           # Job submission UI
+├── dashboard.html       # Monitoring UI
+├── style.css            # CSS styling
+├── requirements.txt     # Python dependencies
+├── test_app.py          # Unit tests
+
+📝 License
+This project is for academic and educational purposes under the MIT License.
+
+
+
+  
