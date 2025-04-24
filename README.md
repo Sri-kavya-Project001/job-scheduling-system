@@ -59,19 +59,27 @@ The system supports automatic job execution, process logging, and performance ev
 ```bash
 git clone https://github.com/your-repo-link/csu_batch_project.git
 cd csu_batch_project
+
 ### 2. Create and Activate Virtual Environment
+
 ```bash
 python -m venv venv
-venv\Scripts\activate        
+venv\Scripts\activate
+ 
 ### 3. Install Dependencies
+
 ```bash
 pip install -r requirements.txt
+
 ### 4. Set Up MySQL Database
+
 sql
 CREATE DATABASE csu_batch_db;
 USE csu_batch_db;
 -- Run the SQL from schema.sql provided in /sql folder
+
 ### 5. Run Application
+
 ```bash
 python app.py
 The app runs at: http://127.0.0.1:5001/
