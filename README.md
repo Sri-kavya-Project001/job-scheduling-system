@@ -54,7 +54,7 @@ The system supports automatic job execution, process logging, and performance ev
 - MySQL Server 8+
 - pip (Python package installer)
 
-### 1. Clone Repository
+### 1. Clone Repository and Setup
 
 ```bash
 git clone https://github.com/your-repo-link/csu_batch_project.git
