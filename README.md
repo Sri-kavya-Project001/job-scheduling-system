@@ -690,9 +690,68 @@ Solution:
 
 Add mock data to UI tests and ensure all UI components are covered by tests.
 
+🔧 pyvenv.cfg File
+The pyvenv.cfg file, located at the root of the virtual environment, contains metadata about the environment. Here's the content of the pyvenv.cfg file:
+version: Denotes the Python version used to create the virtual environment. Here, it is 3.12.3.
+
+
 ``sql
 
 CREATE DATABASE csubatch;
+
+🛠️ Basic Use Cases
+1. Submit a Job
+Fill in Job Name, Priority (1–10), Execution Time, and choose Scheduling Algorithm
+
+Click Submit
+
+You’ll be redirected to the job list, where new jobs appear with status “Pending.”
+
+2. Monitor Job Status
+On the homepage, status updates automatically every 5 seconds
+
+Pending → Running → Completed in real time
+
+Execution duration & turnaround time populate once complete
+
+3. View Dashboard Logs
+Visit http://127.0.0.1:5000/dashboard
+
+See the last 50 log entries and overall metrics (total jobs, average turnaround)
+
+4. Reset Database (for testing)
+sql
+Copy
+Edit
+DELETE FROM jobs;
+DELETE FROM logs;
+Clears all job & log tables so you can start fresh
+
+🚀 Advanced Use Cases
+Bulk Job Simulation
+Hit the test endpoint to auto-create & execute jobs:
+
+arduino
+Copy
+Edit
+http://127.0.0.1:5001/test?num_jobs=10&min_time=1&max_time=5&policy=FCFS
+Use different policy values: FCFS, SJF, Priority
+
+Cancel & Restart a Job
+(Future enhancement example)
+
+Abort: Send a DELETE or custom /cancel/<job_id> request
+
+Restart: Re-submit via UI or call /submit with original parameters
+
+Execution time resets to current time on restart
+
+Performance Evaluation
+After simulation, compare throughput & turnaround time in the dashboard
+
+Export metrics by querying SELECT * FROM jobs; and analyzing externally
+
+
 
 📌 FAQ
 Q: Does CSUbatch run jobs automatically?
@@ -710,7 +769,7 @@ Email:kavyadev2012@gmail.com/chaitanyachikka.2302@gmail.com
 GitHub Issues: Submit here
 
 📅 Version
-Version: v1.0
+Version:  3.12.3
 
 Date: April 2025
 
