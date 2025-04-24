@@ -252,8 +252,6 @@ connection = mysql.connector.connect(
     database='csu_batch'
 )
 ```
-
-
 ## 📝 Form Submission Error
 
 **Error:** `Missing required form fields`  
@@ -263,7 +261,7 @@ One or more required fields (`Job Name`, `Burst Time`, `Priority`) were left emp
 **Solution:**  
 Ensure all fields are filled before clicking **Submit**. Both client-side and server-side validations are included.
 
---
+
 
 ## ⚙️ Job Execution Issue
 
