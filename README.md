@@ -403,8 +403,9 @@ After simulation, compare throughput & turnaround time in the dashboard
 Export metrics by querying SELECT * FROM jobs; and analyzing externally
 
 
+---
 
-📌 FAQ
+### 📌 FAQ
 Q: Does CSUbatch run jobs automatically?
 A: Yes, jobs are executed immediately upon submission.
 
@@ -414,12 +415,16 @@ A: Yes, just select from the scheduling dropdown in the form.
 Q: Is there a monitoring dashboard?
 A: All job statuses are visible on the homepage UI.
 
-📩 Contact
+---
+
+### 📩 Contact
 Email:kavyadev2012@gmail.com/chaitanyachikka.2302@gmail.com
 
 GitHub Issues: Submit here
 
-📅 Version
+---
+
+### 📅 Version
 Version:  3.12.3
 
 Date: April 2025
