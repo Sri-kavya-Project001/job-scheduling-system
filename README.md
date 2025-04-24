@@ -225,8 +225,8 @@ Chrome, Firefox	✅
 
 ✅ Team GitHub contribution workflow
 
-❗ Common Errors & Troubleshooting
-## ❗ Common Errors & Troubleshooting
+
+### ❗ Common Errors & Troubleshooting
 
 ### 🔌 Database Connection Error
 
