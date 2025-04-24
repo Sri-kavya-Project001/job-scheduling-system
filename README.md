@@ -218,6 +218,482 @@ Chrome, Firefox	✅
 
 ✅ Team GitHub contribution workflow
 
+❗ Common Errors & Troubleshooting
+🔌 Database Connection Errors
+---Error: Could not connect to MySQL database
+Cause:
+MySQL server is not running
+
+Invalid credentials or incorrect database name in db.py
+
+Solution:
+
+Ensure MySQL server is running:
+
+```bash
+sudo service mysql start
+Verify your credentials in db.py:
+
+python
+connection = mysql.connector.connect(
+    host="localhost",
+    user="your_username",
+    password="your_password",
+    database="csubatch"
+)
+text
+
+pymysql.err.OperationalError: (1049, "Unknown database 'csubatch'")
+Cause:
+
+The csubatch database hasn't been created yet.
+
+Solution:
+
+Log into MySQL and run:
+📝 Form Submission Errors & UI Issues
+text
+
+Error: Missing required form fields
+Cause:
+
+One or more fields (Job Name, Burst Time, Priority) were left empty before submission.
+
+Solution:
+
+Ensure all fields are filled before clicking Submit.
+
+Client-side validation is already added, but server-side validation also exists for safety.
+
+text
+
+Error: Burst Time and Priority must be positive integers
+Cause:
+
+The form was submitted with non-integer values or negative numbers in numeric fields.
+
+Solution:
+
+Only input positive integers for:
+
+Burst Time (e.g., 5, 10, 25)
+
+Priority (e.g., 1 for highest priority, 2 for lower)
+
+text
+
+Form appears unresponsive / button doesn’t seem to work
+Cause:
+
+JavaScript or server-side error, or the Flask server might not be running.
+
+Solution:
+
+Make sure Flask server is running using:
+
+```bash
+flask run
+Open the browser and navigate to http://127.0.0.1:5001
+
+Use browser developer tools (F12 → Console/Network tab) to debug further.
+⚙️ Job Execution & Scheduler Issues
+text
+
+Error: Job execution seems stuck or not updating
+Cause:
+
+Scheduler thread might not be triggering properly, or job execution logic encountered a deadlock or exception.
+
+Solution:
+
+Check the Flask server logs for any traceback.
+
+Confirm that your scheduler is running inside a background thread.
+
+Ensure threading.Condition() and threading.Lock() objects are used correctly in the scheduler.py.
+
+text
+
+Error: Job executes but does not update the status to ‘Completed’
+Cause:
+
+Status update in the database might be missing or incorrect inside the job execution logic.
+
+Solution:
+
+Verify your job execution function includes a database update like:
+
+python
+
+update_job_status(job_id, 'Completed')
+Ensure db.py has the update_job_status() function implemented correctly.
+
+text
+
+Scheduler Policy Error: Invalid scheduling algorithm selected
+Cause:
+
+Invalid or unsupported algorithm value passed (not FCFS/SJF/Priority).
+
+Solution:
+
+Ensure your HTML <select> or radio buttons pass one of the valid strings:
+
+text
+
+'FCFS', 'SJF', 'Priority'
+Handle default fallback in case of missing or unrecognized input.
+
+text
+
+Error: Jobs not executing in correct order
+Cause:
+
+Possible bug in sorting logic or comparison function for the selected scheduling algorithm.
+
+Solution:
+
+Review your sorting logic in scheduler.py. For example:
+
+FCFS → sort by submission time
+
+SJF → sort by burst time
+
+Priority → sort by priority value (lower value = higher priority)
+
+🗃️ Database & Backend Errors
+text
+
+mysql.connector.errors.ProgrammingError: 1146 (42S02): Table 'csu_batch.jobs' doesn't exist
+Cause:
+
+The jobs table has not been created in your MySQL database.
+
+Solution:
+
+Run the table creation script provided in db.py or execute manually:
+
+sql
+
+CREATE TABLE jobs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  burst_time INT,
+  priority INT,
+  status VARCHAR(50),
+  submission_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+text
+
+mysql.connector.errors.InterfaceError: 2003: Can't connect to MySQL server on 'localhost:3306'
+Cause:
+
+MySQL service might not be running or the host/port is misconfigured.
+
+Solution:
+
+Start MySQL with:
+
+bash
+
+sudo systemctl start mysql
+Check db.py connection parameters:
+
+python
+
+connection = mysql.connector.connect(
+    host='localhost',
+    user='yourusername',
+    password='yourpassword',
+    database='csu_batch'
+)
+text
+
+mysql.connector.errors.ProgrammingError: 1049 (42000): Unknown database 'csu_batch'
+Cause:
+
+The csu_batch database does not exist yet.
+
+Solution:
+
+Create it using:
+
+sql
+
+CREATE DATABASE csu_batch;
+Then run the table creation script.
+
+text
+
+Error: Job status not updating in database
+Cause:
+
+Either the update_job_status() method is missing, or the SQL update query has syntax/logic errors.
+
+Solution:
+
+In db.py, ensure you have something like:
+
+python
+
+def update_job_status(job_id, status):
+    cursor.execute("UPDATE jobs SET status = %s WHERE id = %s", (status, job_id))
+    connection.commit()
+🎨 UI & Styling Errors
+text
+
+CSS not applied to HTML page
+Cause:
+
+The style.css file is not being correctly linked to your HTML.
+
+Solution:
+
+Make sure your HTML <head> includes:
+
+html
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+Also, confirm style.css is placed inside the static/ folder.
+
+text
+
+HTML form fields not aligned properly
+Cause:
+
+CSS flex/grid is not configured correctly, or parent container lacks layout styling.
+
+Solution:
+
+Wrap form rows in a flex container:
+
+html
+
+<div class="form-row">
+  <label>Job Name:</label>
+  <input type="text" name="job_name">
+</div>
+And apply CSS:
+
+css
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+text
+
+Submit button not visible / clickable
+Cause:
+
+It might be hidden under another element due to absolute positioning or overflow.
+
+Solution:
+
+Check for z-index, overflow, and container size.
+
+css
+
+button {
+  z-index: 10;
+  position: relative;
+}
+text
+
+Table rows overlap or are hard to read
+Cause:
+
+Missing padding, inconsistent widths, or borders not defined.
+
+Solution:
+
+Improve with:
+
+css
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+text
+
+Job status not changing color dynamically
+Cause:
+
+No dynamic class or styling based on job status.
+
+Solution:
+
+Use Flask templating:
+
+html
+
+<td class="{{ 'status-' + job.status|lower }}">{{ job.status }}</td>
+And in CSS:
+
+css
+
+.status-pending { color: orange; }
+.status-running { color: blue; }
+.status-completed { color: green; }
+
+---- Job Scheduling Errors
+text
+
+Error: Scheduling algorithm not executing correctly
+Cause:
+
+Incorrect handling of the scheduling queue or missing thread synchronization.
+
+Solution:
+
+Ensure the scheduling logic is correctly implemented with proper mutex/condition variable usage.
+
+text
+
+Error: Job not dispatched after submission
+Cause:
+
+Job is inserted into the queue but not picked up by the dispatcher.
+
+Solution:
+
+Verify the dispatcher thread is correctly polling and executing jobs.
+
+---  Database Errors
+text
+
+Error: Cannot connect to the database
+Cause:
+
+Incorrect database credentials or the database server is down.
+
+Solution:
+
+Check the credentials in the configuration and ensure MySQL is running.
+
+text
+
+Error: Data not inserting into the database
+Cause:
+
+Missing connection.commit() after executing an insert query.
+
+Solution:
+
+Ensure to call commit() after any data insertion or modification:
+
+python
+
+connection.commit()
+--- UI Errors
+text
+
+Error: UI not updating after job submission
+Cause:
+
+Missing page refresh or state update after job is submitted.
+
+Solution:
+
+Use JavaScript to trigger a UI refresh or redirect to a confirmation page after submission.
+
+text
+
+Error: Form submission fails due to validation issues
+Cause:
+
+Missing or incorrect form validation.
+
+Solution:
+
+Ensure all required fields are validated before submitting the form. Use JavaScript or Flask validation.
+
+--- Multithreading Errors
+text
+
+Error: Threads not synchronizing properly
+Cause:
+
+Missing mutexes or condition variables when accessing shared resources.
+
+Solution:
+
+Ensure that all shared resources are protected with appropriate synchronization mechanisms.
+
+text
+
+Error: Deadlock detected in threads
+Cause:
+
+Circular dependencies between threads when locking resources.
+
+Solution:
+
+Refactor thread synchronization to avoid circular locks and ensure proper ordering of lock acquisition.
+
+--- Performance Issues
+text
+
+Error: Slow job execution time
+Cause:
+
+Jobs not being scheduled efficiently or high overhead in scheduling algorithms.
+
+Solution:
+
+Profile the application and optimize scheduling logic, focusing on algorithm complexity.
+
+text
+
+Error: High CPU usage during scheduling
+Cause:
+
+Inefficient use of threads or unnecessary context switches.
+
+Solution:
+
+Reduce the number of active threads and optimize for better resource utilization.
+
+--- Testing Errors
+text
+
+Error: Unit tests failing for job submission
+Cause:
+
+Test data not matching expected values or database not properly initialized.
+
+Solution:
+
+Ensure that the test environment is correctly set up with the appropriate test data and database.
+
+text
+
+Error: UI components not being tested correctly
+Cause:
+
+Missing mock data or incomplete UI test scenarios.
+
+Solution:
+
+Add mock data to UI tests and ensure all UI components are covered by tests.
+
+``sql
+
+CREATE DATABASE csubatch;
+
 📌 FAQ
 Q: Does CSUbatch run jobs automatically?
 A: Yes, jobs are executed immediately upon submission.
