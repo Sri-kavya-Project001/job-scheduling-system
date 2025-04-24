@@ -225,10 +225,11 @@ Chrome, Firefox	✅
 
 ✅ Team GitHub contribution workflow
 
+---
 
 ### ❗ Common Errors & Troubleshooting
 
-### 🔌 Database Connection Error
+## 🔌 Database Connection Error
 
 **Error:** `mysql.connector.errors.InterfaceError: 2003: Can't connect to MySQL server on 'localhost:3306'`  
 **Cause:**  
@@ -252,9 +253,8 @@ connection = mysql.connector.connect(
 )
 ```
 
----
 
-### 📝 Form Submission Error
+## 📝 Form Submission Error
 
 **Error:** `Missing required form fields`  
 **Cause:**  
@@ -263,9 +263,9 @@ One or more required fields (`Job Name`, `Burst Time`, `Priority`) were left emp
 **Solution:**  
 Ensure all fields are filled before clicking **Submit**. Both client-side and server-side validations are included.
 
----
+--
 
-### ⚙️ Job Execution Issue
+## ⚙️ Job Execution Issue
 
 **Error:** `Job executes but does not update the status to 'Completed'`  
 **Cause:**  
@@ -286,9 +286,9 @@ def update_job_status(job_id, status):
     connection.commit()
 ```
 
----
 
-### 🗃️ Database Schema Error
+
+## 🗃️ Database Schema Error
 
 **Error:** `mysql.connector.errors.ProgrammingError: 1146 (42S02): Table 'csu_batch.jobs' doesn't exist`  
 **Cause:**  
@@ -308,9 +308,9 @@ CREATE TABLE jobs (
 );
 ```
 
----
 
-### 🎨 UI & Styling Issue
+
+## 🎨 UI & Styling Issue
 
 **Error:** `CSS not applied to HTML page`  
 **Cause:**  
@@ -325,9 +325,9 @@ Ensure the following is in the `<head>` section of your HTML:
 
 And that `style.css` is inside the `static/` folder.
 
----
 
-### 🧵 Multithreading Error
+
+## 🧵 Multithreading Error
 
 **Error:** `Threads not synchronizing properly`  
 **Cause:**  
