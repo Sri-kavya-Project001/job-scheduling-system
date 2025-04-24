@@ -1,161 +1,240 @@
-# CSUbatch - Job Scheduling System
-
-CSUbatch is a multithreaded batch job scheduling system that simulates job submission, scheduling, and execution using three key scheduling policies: **FCFS**, **SJF**, and **Priority**. It provides a web interface for users to submit jobs, view their status, monitor execution metrics, and assess performance.
+# CSUbatch: Multithreaded Batch Job Scheduler
 
 ---
 
-## 📌 Project Overview
+## 🧩 Overview
 
-The system is built with four major modules:
+**CSUbatch** is a multithreaded batch job scheduling system developed using Python (Flask) and MySQL. It simulates real-time job scheduling with three classical scheduling algorithms:
+- First-Come, First-Served (FCFS)
+- Shortest Job First (SJF)
+- Priority Scheduling
 
-1. **Job Submission and User Interface**  
-   - HTML/CSS interface for submitting jobs and selecting a scheduling algorithm.  
-   - Displays real-time job status and performance metrics.
-
-2. **Job Scheduling Algorithm and Core Logic**  
-   - Implements First-Come-First-Serve (FCFS), Shortest Job First (SJF), and Priority-based scheduling.  
-   - Supports multithreaded execution using Python's threading module.
-
-3. **Database and Backend Integration**  
-   - Uses MySQL to store and manage job data.  
-   - Backend powered by Flask and `mysql-connector-python`.
-
-4. **Monitoring and Logging System**  
-   - Logs key events and execution details.  
-   - Provides metrics like execution duration, turnaround time, and throughput.
+The system supports automatic job execution, process logging, and performance evaluations.
 
 ---
 
-## 🛠 Features
+## 🧑‍💻 Target Users
 
-✔ Job submission and real-time status updates  
-✔ FCFS, SJF, and Priority scheduling  
-✔ Monitoring dashboard for job metrics  
-✔ Log tracking and performance analysis  
-✔ Automatic job execution on submission  
-✔ Bulk job testing and performance simulation  
-✔ Option to abort and restart jobs (future enhancement)
+| User Type         | Background Assumed                           | Purpose                                     |
+|-------------------|----------------------------------------------|---------------------------------------------|
+| End Users         | Basic Python, browser use                    | Submit, monitor jobs                        |
+| User-Developers   | Familiar with Flask, HTML, CSS               | Extend UI, add validations                  |
+| Developers        | Python (Flask), threading, MySQL, Linux CLI | Modify scheduling algorithms, logging       |
 
 ---
 
-## ⚙️ Technologies Used
+## 📚 Resources and Documentation
 
-- **Backend**: Flask (Python)
-- **Database**: MySQL
-- **Frontend**: HTML, CSS, JavaScript
-- **Multithreading**: Python `threading`
-- **Dev Environment**: PyCharm + Ubuntu (WSL)
+- [Project Repository (GitHub)](https://github.com/your-repo-link)
+- [Installation Guide](#-installation)
+- [Getting Started Tutorial](#-quick-start-guide)
+- [Developer Guide](#-developer-guide)
+- [FAQs](#-faq)
+- [Changelog](CHANGELOG.md)
 
 ---
 
-## 🧱 Setup & Installation
+## ✅ Features
 
-### ✅ Prerequisites
+- Web-based job submission form
+- Automatic job execution
+- Supports FCFS, SJF, and Priority
+- Real-time job tracking
+- MySQL backend
+- Modular codebase
+- Platform independent (tested on Windows & Ubuntu)
 
-- Python 3.x  
-- MySQL Server  
-- pip (Python Package Manager)  
-- Git  
-- PyCharm or any IDE (Optional)
+---
 
-### 📥 Clone the Repository
+## 🚀 Quick Start Guide
 
-git clone https://github.com/Sri-kavya-Project001/job-scheduling-system.git
+### Prerequisites
 
-cd job-scheduling-system
+- Python 3.10+
+- MySQL Server 8+
+- pip (Python package installer)
 
-###📦 Create & Activate Virtual Environment
-  cd /mnt/c/Users/User/PycharmProjects/PythonProject2/csu_batch_project
-.\.venv\Scripts\activate
+### 1. Clone Repository
 
-### On Ubuntu/Linux (WSL):
-cd /mnt/c/Users/User/PycharmProjects/PythonProject2/csu_batch_project
-source .venv/bin/activate
-
-
-⚡ Run the Application
+```bash
+git clone https://github.com/your-repo-link/csu_batch_project.git
+cd csu_batch_project
+### 2. Create and Activate Virtual Environment
+```bash
+python -m venv venv
+source venv/bin/activate     # On Linux/macOS
+venv\Scripts\activate        # On Windows
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+### 4. Set Up MySQL Database
+sql
+CREATE DATABASE csu_batch_db;
+USE csu_batch_db;
+-- Run the SQL from schema.sql provided in /sql folder
+### 5. Run Application
+```bash
 python app.py
+The app runs at: http://127.0.0.1:5001/
 
-Visit http://127.0.0.1:5001 in your browser.
+🖥️ What You’ll See
+Landing page with a job submission form
 
-🛠 MySQL Setup
-🔐 Log in to MySQL
- mysql -u shivani -p
+Job listing with status updates
 
-📁 Use the database
-USE csu_batch_scheduler;
+Color-coded progress and result feedback
 
-🧹 Reset jobs table (for testing)
-DELETE FROM jobs;
+🛠 Installation
+From GitHub (recommended)
+```bash
+git clone https://github.com/your-repo-link/csu_batch_project.git
+Uses plain directory structure.
 
-🧪 Testing & Simulation
-🧪 Run Unit Tests
+All files are located inside the main csu_batch_project directory.
 
+Includes a README.md with:
+
+Project name
+
+License
+
+Version
+
+Website and help contact
+
+🧪 Testing
+To run unit tests for the application:
+
+```bash
 python -m unittest test_app.py
+This runs test cases defined in test_app.py.
 
+Make sure your virtual environment is activated and dependencies installed.
 
-🚀 Simulate Job Load
-Submit 10 jobs (1 to 5 seconds) using FCFS:
+Tests validate:
 
-http://127.0.0.1:5001/test?num_jobs=10&min_time=1&max_time=5&policy=FCFS
+Job submission and response
 
-📚 Development Cycles
-✅ Cycle 1
-Requirements analysis
+Scheduling logic flow
 
-Initial UI and Flask setup
+Database connectivity
+🧱 Build Instructions
+Platform: Ubuntu 22.04 / Windows 11
 
-Created MySQL schema
+Build System: Manual + virtual environment
 
-Implemented basic FCFS scheduling
+Dependencies:
 
-✅ Cycle 2
-Added SJF and Priority scheduling
+Flask, mysql-connector-python, threading, pytest
 
-Implemented logging and dashboard
+Dependency Management: pip
 
-UI enhanced with CSS
+Build Verification: Run app.py, use the UI, and check job flow
 
-Jobs auto-execute on submission
+📂 Directory Structure
+plaintext
+Copy
+Edit
+csu_batch_project/
+│
+├── app.py                  # Main Flask app
+├── scheduler.py            # Scheduling algorithms
+├── db.py                   # Database connector
+├── templates/
+│   ├── index.html          # Main UI
+├── static/
+│   ├── style.css           # UI styles
+├── tests/                  # Test cases
+├── README.md               # This file
+├── sql/
 
-✅ Cycle 3
-Improved modularity and code structure
+🧑‍💼 Developer Guide
+Modifying scheduling algorithms: Edit scheduler.py
 
-Extended test coverage
+Adding new fields to job form: Edit templates/index.html and app.py
 
-Added performance simulation tool
+Logging: Implemented using basic Python logging in future enhancements
 
-Prepared reports and documentation
+🔐 Licensing & Governance
+License: MIT
 
-🚧 Future Enhancements
-Abort and restart job functionality
+Project Maintainers:
 
-Graph-based performance visualization
+Contributor 1(Sri kavya) - UI and Backend
 
-Admin control panel for job management
+Contributor 2(Chaitanya) - Scheduling Logic
 
-Support for parallel job clusters
+Contributor 3(Hemanth) - Testing & Performance
 
-Deploy with Docker
+Contributor 4(ISha) - Database & Docs
 
-🙌 Authors
-Sri Kavya, Hemanth, Chaitanya, Isha
+🧠 Learnability
+✅ Basic usage covered in Getting Started
 
-Team CSUbatch
+✅ Advanced use (e.g. performance metrics logging) explained in comments
 
-📂 Repository Structure
+✅ Full UI and API are documented
 
-├── app.py               # Flask backend
-├── scheduler.py         # Scheduling logic
-├── db.py                # Database connection
-├── index.html           # Job submission UI
-├── dashboard.html       # Monitoring UI
-├── style.css            # CSS styling
-├── test_app.py          # Unit tests
+✅ Example use cases with screenshots to be added soon
 
-📝 License
-This project is for academic and educational purposes under the MIT License.
+🔍 Accessibility
+✅ Freely accessible binary and source via GitHub
 
+✅ No login or registration required
 
+✅ Hosted on GitHub for long-term availability
 
-  
+🧪 Testability
+✅ Unit tests using pytest
+
+✅ Tests cover job submission, scheduling behavior
+
+❌ No GUI automation tests yet (future)
+
+✅ Easy test script: pytest
+
+🔄 Portability
+
+Platform	Status
+Windows 10/11	✅
+Ubuntu 20.04+	✅
+MacOS	✅
+Chrome, Firefox	✅
+🔬 Analysability
+✅ Modular source structure
+
+✅ Descriptive function names
+
+✅ Code is commented
+
+✅ Auto-generated code is separated (none currently)
+
+✅ No commented-out legacy code
+
+🔁 Changeability
+✅ Easy to modify form and logic
+
+✅ Well-structured Flask app
+
+✅ Team GitHub contribution workflow
+
+📌 FAQ
+Q: Does CSUbatch run jobs automatically?
+A: Yes, jobs are executed immediately upon submission.
+
+Q: Can I switch between FCFS, SJF, and Priority?
+A: Yes, just select from the scheduling dropdown in the form.
+
+Q: Is there a monitoring dashboard?
+A: All job statuses are visible on the homepage UI.
+
+📩 Contact
+Email:kavyadev2012@gmail.com/chaitanyachikka.2302@gmail.com
+
+GitHub Issues: Submit here
+
+📅 Version
+Version: v1.0
+
+Date: April 2025
+
