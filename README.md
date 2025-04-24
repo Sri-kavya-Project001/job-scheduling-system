@@ -348,12 +348,9 @@ And initialize using:
 condition = threading.Condition()
 ```
 
-🔧 pyvenv.cfg File
-The pyvenv.cfg file, located at the root of the virtual environment, contains metadata about the environment. Here's the content of the pyvenv.cfg file:
-version: Denotes the Python version used to create the virtual environment. Here, it is 3.12.3.
+---
 
-
-``sql
+### sql
 
 CREATE DATABASE csubatch;
 
