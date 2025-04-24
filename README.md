@@ -350,11 +350,7 @@ condition = threading.Condition()
 
 ---
 
-### sql
-
-CREATE DATABASE csubatch;
-
-🛠️ Basic Use Cases
+### 🛠️ Basic Use Cases
 1. Submit a Job
 Fill in Job Name, Priority (1–10), Execution Time, and choose Scheduling Algorithm
 
